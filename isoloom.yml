@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP SKF Regular Expression Denial of Service (OWASP Security Knowledge Framework labs, by Glenn ten Cate, Riccardo ten Cate and the SKF contributors) as an Isoloom spec:
+# a Flask e-mail checker whose validation regex backtracks catastrophically (ReDoS). The SKF lab folder python/DoS-regex is
+# vendored unchanged in app/ and built by its own Dockerfile.
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: skf-dos-regex
+
+networks:
+  lab: { cidr: 10.60.168.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 5000, name: web, http: true, publish: 5050 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: app
+
+checks:
+  - name: the lab answers
+    http: http://web:5000/
+    wait: 120
+  - name: /verify_email checks an address with the regex
+    script: checks/email.sh
+
+message: |
+  OWASP SKF Regular Expression Denial of Service answers at http://localhost:{{ machines.web.services.0.publish }}/.
+  The form posts an address to /verify_email. Read the pattern: what happens when a long address almost matches?

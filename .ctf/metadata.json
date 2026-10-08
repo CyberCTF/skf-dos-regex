@@ -1,0 +1,14 @@
+{
+  "title": "OWASP SKF Regular Expression Denial of Service",
+  "description": "A Flask page that validates an e-mail address with a regular expression containing nested quantifiers, run by Python's backtracking re engine.",
+  "question": "Find an input that makes the e-mail validation take so long that the application stops answering (regular expression denial of service).",
+  "category": "WEB",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": [
+    "redos",
+    "denial-of-service",
+    "regex",
+    "availability"
+  ]
+}
