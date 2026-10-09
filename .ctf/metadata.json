@@ -4,11 +4,5 @@
   "question": "Find an input that makes the e-mail validation take so long that the application stops answering (regular expression denial of service).",
   "category": "WEB",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": [
-    "redos",
-    "denial-of-service",
-    "regex",
-    "availability"
-  ]
+  "evidence_kind": "SECRET"
 }
