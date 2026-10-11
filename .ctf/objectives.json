@@ -1,0 +1,43 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Find the input that stalls the e-mail check; the flag is in /ctf/flag.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-skf-dos-regex}",
+      "hints": [
+        "The e-mail pattern contains nested quantifiers.",
+        "Read about catastrophic backtracking and regular expression denial of service."
+      ],
+      "steps": [
+        {
+          "key": "param",
+          "title": "Find the input",
+          "prompt": "Which form field is validated by the pattern? (field name)",
+          "check": {
+            "answer": [
+              "email"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "What class of vulnerability is this? (acronym accepted)",
+          "check": {
+            "answer": [
+              "redos",
+              "regular expression denial of service",
+              "regex dos",
+              "catastrophic backtracking"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
